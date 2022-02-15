@@ -1,8 +1,12 @@
-﻿namespace Animus.Data.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Animus.Data.Entities
 {
     public class Section : BaseEntity
     {
-        public string Name { get; set; } = string.Empty;
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        public string Name { get; set; }
         public ICollection<Post> Posts { get; set; } = new List<Post>();
     }
 }
