@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animus.Web", "Animus.Web\Animus.Web.csproj", "{E4745745-E6CE-4904-8408-572028A47309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animus.Web", "Animus.Web\Animus.Web.csproj", "{E4745745-E6CE-4904-8408-572028A47309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animus.Data", "Animus.Data\Animus.Data.csproj", "{7C11551F-7D19-438D-A2A7-023611ED8B47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animus.Data", "Animus.Data\Animus.Data.csproj", "{7C11551F-7D19-438D-A2A7-023611ED8B47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animus.Business", "Animus.Business\Animus.Business.csproj", "{F590E721-6065-499F-8D54-7582788587A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7C11551F-7D19-438D-A2A7-023611ED8B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C11551F-7D19-438D-A2A7-023611ED8B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C11551F-7D19-438D-A2A7-023611ED8B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F590E721-6065-499F-8D54-7582788587A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F590E721-6065-499F-8D54-7582788587A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F590E721-6065-499F-8D54-7582788587A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F590E721-6065-499F-8D54-7582788587A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

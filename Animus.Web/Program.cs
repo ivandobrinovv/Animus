@@ -1,10 +1,25 @@
+using Animus.Business.Services;
+using Animus.Business.Services.Intrefaces;
 using Animus.Data;
+using Animus.Data.Repositories;
+using Animus.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AnimusDbContext>(
         options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+
+// Register repositories
+
+builder.Services.AddScoped<IPhotoRepository, PhotoRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<ISectionRepository, SectionRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Register services
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

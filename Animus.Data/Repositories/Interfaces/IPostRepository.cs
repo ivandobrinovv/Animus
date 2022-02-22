@@ -2,7 +2,7 @@
 
 namespace Animus.Data.Repositories.Interfaces
 {
-    internal interface IPostRepository : IBaseRepository<Post>
+    public interface IPostRepository : IBaseRepository<Post>
     {
     }
 }
