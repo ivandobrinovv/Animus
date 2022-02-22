@@ -14,28 +14,28 @@ namespace Animus.Data.Repositories
             this.context = context;
         }
 
-        public async Task<ICollection<T>> GetAll()
+        public virtual async Task<ICollection<T>> GetAll()
         {
             return await context.Set<T>().ToListAsync();
         }
 
-        public async Task<ICollection<T>> GetAll(Expression<Func<T, bool>> filter)
+        public virtual async Task<ICollection<T>> GetAll(Expression<Func<T, bool>> filter)
         {
             return await context.Set<T>().Where(filter).ToListAsync();
         }
 
-        public async ValueTask<T?> GetById(Guid id)
+        public virtual async ValueTask<T?> GetById(Guid id)
         {
             return await context.Set<T>().FindAsync(id);
         }
 
-        public async Task Create(T entity)
+        public virtual async Task Create(T entity)
         {
             context.Set<T>().Add(entity);
             await context.SaveChangesAsync();
         }
 
-        public async Task Update(T entity)
+        public virtual async Task Update(T entity)
         {
             var dbEntity = await GetById(entity.Id);
 
@@ -49,7 +49,7 @@ namespace Animus.Data.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete(Guid id)
+        public virtual async Task Delete(Guid id)
         {
             var entity = await GetById(id);
 
