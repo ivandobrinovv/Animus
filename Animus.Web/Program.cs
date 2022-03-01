@@ -1,3 +1,4 @@
+using Animus.Business.Configuration;
 using Animus.Business.Services;
 using Animus.Business.Services.Intrefaces;
 using Animus.Data;
@@ -20,6 +21,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Register services
 
 builder.Services.AddScoped<IUserService, UserService>();
+
+// Mapper configuration
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add services to the container.
 builder.Services.AddRazorPages();

@@ -12,7 +12,7 @@ namespace Animus.Data.Repositories
             
         }
 
-        public override async ValueTask<Section?> GetById(Guid id)
+        public override async ValueTask<Section?> GetByIdAsync(Guid id)
         {
             return await context.Sections
                 .Include(x => x.Posts)
@@ -20,18 +20,17 @@ namespace Animus.Data.Repositories
             
         }
         
-        public override async Task<ICollection<Section>> GetAll()
+        public override IQueryable<Section> GetAll()
         {
-            return await context.Sections
-                .Include(x => x.Posts)
-                .ToListAsync();
+            return context.Sections
+                .Include(x => x.Posts);
+                
         }
-        public override async Task<ICollection<Section>> GetAll(Expression<Func<Section, bool>> filter)
+        public override IQueryable<Section> GetAll(Expression<Func<Section, bool>> filter)
         {
-            return await context.Sections
+            return context.Sections
                 .Include(x => x.Posts)
-                .Where(filter)
-                .ToListAsync();
+                .Where(filter);
         }
 
         
