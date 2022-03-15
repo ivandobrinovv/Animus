@@ -1,6 +1,5 @@
 ﻿using Animus.Data.Entities;
 using Animus.Data.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Animus.Data.Repositories
@@ -41,7 +40,7 @@ namespace Animus.Data.Repositories
 
             if (dbEntity == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"No such {typeof(T)} with id: {entity.Id}");
             }
 
             context.Entry(dbEntity).CurrentValues.SetValues(entity);
@@ -55,7 +54,7 @@ namespace Animus.Data.Repositories
 
             if (entity == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"No such {typeof(T)} with id: {id}");
             }
 
             context.Remove(entity);

@@ -1,4 +1,3 @@
-using Animus.Business.Configuration;
 using Animus.Business.Services;
 using Animus.Business.Services.Intrefaces;
 using Animus.Data;

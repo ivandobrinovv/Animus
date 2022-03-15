@@ -8,5 +8,10 @@ namespace Animus.Data.Repositories
         public UserRepository(AnimusDbContext context) : base(context)
         {
         }
+
+        public User? GetUserByEmail(string email)
+        {
+            return context.Users.SingleOrDefault(x => x.Email == email);
+        }
     }
 }

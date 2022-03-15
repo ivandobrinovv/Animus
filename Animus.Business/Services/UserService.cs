@@ -4,12 +4,7 @@ using Animus.Data.Entities;
 using Animus.Data.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Animus.Business.Services
 {
@@ -44,7 +39,7 @@ namespace Animus.Business.Services
         }
         public async Task<UserModel> GetUserAsync(Guid id)
         {
-            User user = await _repository.GetByIdAsync(id);
+            User? user = await _repository.GetByIdAsync(id);
             if (user is null)
             {
                 throw new ArgumentException("No such user");
@@ -58,9 +53,14 @@ namespace Animus.Business.Services
                 .Select(x => _mapper.Map<UserModel>(x))
                 .ToListAsync();
         }
-
-
-
-
+        public UserModel GetUserByEmail(string email)
+        {
+            User? user = _repository.GetUserByEmail(email);
+            if (user is null)
+            {
+                throw new ArgumentException();
+            }
+            return _mapper.Map<UserModel>(user);
+        }
     }
 }
