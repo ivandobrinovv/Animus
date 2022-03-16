@@ -1,17 +1,11 @@
 ﻿using Animus.Business.Models.Users;
 using Animus.Business.Services.Intrefaces;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using BCrypt.Net;
-using System.Text.Json;
 
 namespace Animus.Business.Services
 {
-    public class AuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserService _userService;
         public AuthenticationService(IUserService userService)
@@ -30,7 +24,7 @@ namespace Animus.Business.Services
             catch (Exception)
             {
                 return null;
-            }           
+            }
         }
 
         public void LogIn(HttpContext httpContext, AuthenticationModel authenticationModel)

@@ -16,7 +16,7 @@ namespace Animus.Data.Repositories
         {
             return await context.Sections
                 .Include(x => x.Posts)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .SingleOrDefaultAsync(x => x.Id == id);
             
         }
         

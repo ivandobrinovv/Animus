@@ -1,0 +1,12 @@
+﻿@using Animus.Business.Models.Users
+@model List<UserModel>
+@{
+    ViewData["Title"] = "List users";
+}
+
+<ul>
+    @foreach(var user in Model)
+    {
+        <li>@user</li>
+    }
+</ul>

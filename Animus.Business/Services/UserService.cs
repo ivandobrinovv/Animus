@@ -42,7 +42,7 @@ namespace Animus.Business.Services
             User? user = await _repository.GetByIdAsync(id);
             if (user is null)
             {
-                throw new ArgumentException("No such user");
+                throw new ArgumentException("No such user exists!");
             }
             return _mapper.Map<UserModel>(user);
         }
@@ -61,6 +61,19 @@ namespace Animus.Business.Services
                 throw new ArgumentException();
             }
             return _mapper.Map<UserModel>(user);
+        }
+
+        public List<UserModel> GetAll()
+        {
+            List<User> users = _repository.GetAll().ToList();
+            return _mapper.Map<List<UserModel>>(users);
+        }
+
+        public List<UserModel> GetAll(Expression<Func<UserModel, bool>> filter)
+        {
+            var userFilter = _mapper.Map<Expression<Func<User, bool>>>(filter);
+            List<User> users = _repository.GetAll(userFilter).ToList();
+            return _mapper.Map<List<UserModel>>(users);
         }
     }
 }

@@ -20,6 +20,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Register services
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<ISectionService, SectionService>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 // Mapper configuration
 
@@ -44,6 +48,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 

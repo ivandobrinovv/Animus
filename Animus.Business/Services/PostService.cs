@@ -1,19 +1,14 @@
 ﻿using Animus.Business.Models.Posts;
-using Animus.Business.Models.Users;
+using Animus.Business.Services.Intrefaces;
 using Animus.Data.Entities;
 using Animus.Data.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Animus.Business.Services
 {
-    public class PostService
+    public class PostService : IPostService
     {
         private readonly IPostRepository _repository;
         private readonly IMapper _mapper;
@@ -49,7 +44,7 @@ namespace Animus.Business.Services
             var post = await _repository.GetByIdAsync(id);
             if (post is null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("No such post exists!");
             }
             return _mapper.Map<PostModel>(post);
         }
