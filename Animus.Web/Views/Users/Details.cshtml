@@ -1,0 +1,16 @@
+﻿@using Animus.Business.Models.Users
+@model UserModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1 class="mb-5">Details</h1>
+    
+    <p class=""><span class="fw-bold mr-5">Username: </span>@Model.Username</p>
+    <span></span>
+    <p class="mb-5"><span class="fw-bold">Email: </span>@Model.Email</p>
+    <a asp-action="Index">Back to List</a>
+
+</div>

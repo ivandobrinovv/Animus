@@ -46,13 +46,7 @@ namespace Animus.Business.Services
             }
             return _mapper.Map<UserModel>(user);
         }
-        public async Task<ICollection<UserModel>> GetAllUsersAsync(Expression<Func<User, bool>> filter)
-        {            
-            return await _repository
-                .GetAll(filter)
-                .Select(x => _mapper.Map<UserModel>(x))
-                .ToListAsync();
-        }
+
         public UserModel GetUserByEmail(string email)
         {
             User? user = _repository.GetUserByEmail(email);
@@ -63,16 +57,16 @@ namespace Animus.Business.Services
             return _mapper.Map<UserModel>(user);
         }
 
-        public List<UserModel> GetAll()
+        public async Task<List<UserModel>> GetAll()
         {
-            List<User> users = _repository.GetAll().ToList();
+            List<User> users = await _repository.GetAll().ToListAsync();
             return _mapper.Map<List<UserModel>>(users);
         }
 
-        public List<UserModel> GetAll(Expression<Func<UserModel, bool>> filter)
+        public async Task<List<UserModel>> GetAll(Expression<Func<UserModel, bool>> filter)
         {
             var userFilter = _mapper.Map<Expression<Func<User, bool>>>(filter);
-            List<User> users = _repository.GetAll(userFilter).ToList();
+            List<User> users = await _repository.GetAll(userFilter).ToListAsync();
             return _mapper.Map<List<UserModel>>(users);
         }
     }

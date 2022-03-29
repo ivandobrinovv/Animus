@@ -12,8 +12,14 @@ namespace Animus.Business.Services.Intrefaces
     {
         UserModel GetUserByEmail(string email);
 
-        List<UserModel> GetAll();
+        Task<List<UserModel>> GetAll();
 
-        List<UserModel> GetAll(Expression<Func<UserModel, bool>> filter);
+        Task<List<UserModel>> GetAll(Expression<Func<UserModel, bool>> filter);
+
+        Task<UserModel> GetUserAsync(Guid id);
+
+        Task AddAsync(UserModel model);
+
+        Task DeleteAsync(Guid id);
     }
 }
