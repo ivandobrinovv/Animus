@@ -1,6 +1,5 @@
 ﻿using Animus.Data.Entities;
 using Animus.Data.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Animus.Data.Repositories
@@ -14,34 +13,34 @@ namespace Animus.Data.Repositories
             this.context = context;
         }
 
-        public virtual async Task<ICollection<T>> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-            return await context.Set<T>().ToListAsync();
+            return context.Set<T>().AsQueryable();
         }
 
-        public virtual async Task<ICollection<T>> GetAll(Expression<Func<T, bool>> filter)
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> filter)
         {
-            return await context.Set<T>().Where(filter).ToListAsync();
+            return context.Set<T>().Where(filter);
         }
 
-        public virtual async ValueTask<T?> GetById(Guid id)
+        public virtual async ValueTask<T?> GetByIdAsync(Guid id)
         {
             return await context.Set<T>().FindAsync(id);
         }
 
-        public virtual async Task Create(T entity)
+        public virtual async Task CreateAsync(T entity)
         {
             context.Set<T>().Add(entity);
             await context.SaveChangesAsync();
         }
 
-        public virtual async Task Update(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
-            var dbEntity = await GetById(entity.Id);
+            var dbEntity = await GetByIdAsync(entity.Id);
 
             if (dbEntity == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"No such {typeof(T)} with id: {entity.Id}");
             }
 
             context.Entry(dbEntity).CurrentValues.SetValues(entity);
@@ -49,13 +48,13 @@ namespace Animus.Data.Repositories
             await context.SaveChangesAsync();
         }
 
-        public virtual async Task Delete(Guid id)
+        public virtual async Task DeleteAsync(Guid id)
         {
-            var entity = await GetById(id);
+            var entity = await GetByIdAsync(id);
 
             if (entity == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"No such {typeof(T)} with id: {id}");
             }
 
             context.Remove(entity);

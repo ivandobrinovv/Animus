@@ -17,5 +17,6 @@ namespace Animus.Data.Entities
         public Guid? ParentId { get; set; }
         public Post? Parent { get; set; }
         public ICollection<Post> Comments { get; set; } = new List<Post>();
+        public int Likes { get; set; } = 0;
     }
 }
